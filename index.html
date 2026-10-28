@@ -13,7 +13,7 @@ async function pollTikFinity(){
  if(viewer||remoteBusy)return;
  remoteBusy=true;
  try{
-  const r=await fetch('/.netlify/functions/zauber-events?after='+lastRemoteId+'&since='+startedAt,{cache:'no-store'});
+  const r=await fetch('/api/zauber-events?after='+lastRemoteId+'&since='+startedAt,{cache:'no-store'});
   if(!r.ok)throw Error('HTTP '+r.status);
   const data=await r.json();
   if(data.events){for(const e of data.events){lastRemoteId=Math.max(lastRemoteId,Number(e.id)||0);if(e.type==='name')add(e.name,false);else if(e.type==='donut')add(e.name,true);else if(e.type==='join')greet(e.name)}}

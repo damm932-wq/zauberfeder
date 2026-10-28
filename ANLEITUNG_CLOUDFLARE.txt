@@ -1,0 +1,27 @@
+ZAUBERFEDER V7 – CLOUDFLARE PAGES
+
+Diese ZIP ist für Cloudflare Pages, NICHT für Cloudflare Workers.
+
+GitHub-Repository: damm932-wq/zauberfeder
+Cloudflare Pages: Framework None, Build command leer, Build output directory .
+
+WICHTIG: Cloudflare Pages Function /api/zauber-events braucht:
+1. Cloudflare KV-Namespace (z.B. zauberfeder-events)
+2. Pages-Projekt > Settings > Bindings > KV namespace binding:
+   Variable name: EVENTS, Namespace: zauberfeder-events
+3. Pages-Projekt > Settings > Variables and Secrets:
+   ZAUBERFEDER_WEBHOOK_KEY = selbst gewählter langer geheimer Wert
+   Als Secret hinterlegen, NICHT ins öffentliche GitHub-Repository schreiben.
+4. Nach dem Einrichten der Bindings/Secrets erneut deployen.
+
+TikFinity-Webhook-URLs (nach erfolgreichem Deployment):
+https://zauberfeder.pages.dev/api/zauber-events?type=name&key=DEIN_GEHEIMER_WERT
+https://zauberfeder.pages.dev/api/zauber-events?type=donut&key=DEIN_GEHEIMER_WERT
+https://zauberfeder.pages.dev/api/zauber-events?type=join&key=DEIN_GEHEIMER_WERT
+
+ACHTUNG: Ein POST muss einen JSON-Body mit Anzeigenamen liefern.
+TikFinity-Webhook-Funktion und JSON-Payload müssen separat getestet werden.
+KV ist eventual-consistent; bei sehr schnellen gleichzeitigen Events sind Verluste möglich.
+Für eine robuste große LIVE-Warteschlange wäre später Durable Objects sinnvoll.
+
+Die bisherige V6 auf Netlify bleibt unverändert.
