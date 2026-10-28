@@ -1,0 +1,23 @@
+ZAUBERFEDER V7 – TikFinity-Anbindung
+
+ACHTUNG: Dieses Projekt enthält eine Netlify Function.
+Netlify Drop (HTML per Drag & Drop) reicht dafür NICHT aus.
+Die Dateien müssen über ein neues GitHub-Repository mit Netlify verbunden werden.
+Die bestehende V6-Webseite bleibt bis dahin unverändert.
+
+In TikFinity unter jeder Aktion "Webhook auslösen" einschalten und folgende URLs eintragen:
+
+!name:
+https://zauberfeder.netlify.app/.netlify/functions/zauber-events?type=name&key=IlwQ483DsePX6iUpMvG2y-kvmU7MXg
+
+DONUT:
+https://zauberfeder.netlify.app/.netlify/functions/zauber-events?type=donut&key=IlwQ483DsePX6iUpMvG2y-kvmU7MXg
+
+Join:
+https://zauberfeder.netlify.app/.netlify/functions/zauber-events?type=join&key=IlwQ483DsePX6iUpMvG2y-kvmU7MXg
+
+WICHTIG: URLs erst nach erfolgreichem GitHub-Deploy einschalten.
+Das bestehende TikFinity-TTS bleibt aktiv. In V7 daher am Adminfenster die Computerstimme abschalten, um doppelte Ansagen zu vermeiden.
+Die App muss im Adminfenster geöffnet sein, damit der Zuschauerbildschirm Aufträge via BroadcastChannel erhält.
+Wenn TikFinity nur den @Benutzernamen statt des Anzeigenamens übermittelt, muss das Event-Payload geprüft werden.
+Eine Eintrittsbegrüßung nur einmal pro LIVE ist im Browser vorgesehen, bei Neustart des Adminfensters wird sie zurückgesetzt.
